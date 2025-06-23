@@ -58,7 +58,10 @@ export async function POST(req: Request) {
         /appointment.*?(?:for|with)\s+(\w+)/i,
       ];
 
-      for (const pattern of summaryPatterns) {
+
+      
+
+      for (const pattern of summaryPatterns) { 
         const match = summary.match(pattern);
         if (
           match &&
