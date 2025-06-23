@@ -59,7 +59,7 @@ export async function POST(req: Request) {
       ];
 
       for (const pattern of summaryPatterns) {
-        const match = summary.match(pattern);
+        const match = summary.match(pattern)
         if (
           match &&
           match[1] &&
