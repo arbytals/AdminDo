@@ -134,7 +134,11 @@ export function RecentActivity() {
         // Add call activities
         callsData?.forEach((call) => {
           const agent = agentsMap.get(call.agent_id);
-          const agentName = agent?.name || "Unknown Agent";
+          const agentName =
+            agent?.name ||
+            (call.agent_id
+              ? `Agent ${call.agent_id.slice(-4)}`
+              : "Unknown Agent");
           const appointment = appointmentsMap.get(call.id);
           const customer = appointment?.customer_name || "Unknown Customer";
 

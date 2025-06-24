@@ -4,6 +4,30 @@ import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase";
 import type { CallRecord } from "@/types/dashboard";
 
+// Type definitions for database rows
+interface CallRow {
+  id: string;
+  agent_id?: string;
+  from_number?: string;
+  duration?: number;
+  appointment_booked?: boolean;
+  start_time?: string;
+  successful?: boolean;
+  transcript?: string;
+  summary?: string;
+}
+
+interface AgentRow {
+  id: string;
+  name: string;
+  email: string;
+}
+
+interface AppointmentRow {
+  call_id: string;
+  customer_name: string;
+}
+
 export function useCallHistory() {
   const [calls, setCalls] = useState<CallRecord[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -38,18 +62,27 @@ export function useCallHistory() {
         if (appointmentsError) throw appointmentsError;
 
         // Create lookup maps
-        const agentsMap = new Map(agentsData.map((agent) => [agent.id, agent]));
+        const agentsMap = new Map(
+          agentsData.map((agent: AgentRow) => [agent.id, agent])
+        );
         const appointmentsMap = new Map(
-          appointmentsData.map((apt) => [apt.call_id, apt])
+          appointmentsData.map((apt: AppointmentRow) => [apt.call_id, apt])
         );
 
-        const formattedCalls: CallRecord[] = callsData.map((call: any) => {
-          const agent = agentsMap.get(call.agent_id);
+        const formattedCalls: CallRecord[] = callsData.map((call: CallRow) => {
+          const agent = agentsMap.get(call.agent_id || "");
           const appointment = appointmentsMap.get(call.id);
+
+          // Better agent name fallback - don't show raw agent IDs
+          const agentName =
+            agent?.name ||
+            (call.agent_id
+              ? `Agent ${call.agent_id.slice(-4)}`
+              : "Unknown Agent");
 
           return {
             id: call.id,
-            agentName: agent?.name || call.agent_id || "Unknown Agent",
+            agentName,
             customerPhone: call.from_number || "N/A",
             customerName: appointment?.customer_name || "Unknown Customer",
             duration: call.duration

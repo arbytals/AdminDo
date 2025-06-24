@@ -4,6 +4,26 @@ import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase";
 import type { Appointment } from "@/types/dashboard";
 
+// Type definitions for database rows
+interface AppointmentRow {
+  id: string;
+  customer_name?: string;
+  customer_email?: string;
+  customer_phone?: string;
+  appointment_date?: string;
+  appointment_time?: string;
+  reason?: string;
+  status?: string;
+  agent_id?: string;
+  notes?: string;
+  call_id?: string;
+}
+
+interface AgentRow {
+  id: string;
+  name: string;
+}
+
 export function useAppointments() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,11 +53,13 @@ export function useAppointments() {
         if (agentsError) throw agentsError;
 
         // Create lookup map for agents
-        const agentsMap = new Map(agentsData.map((agent) => [agent.id, agent]));
+        const agentsMap = new Map(
+          agentsData.map((agent: AgentRow) => [agent.id, agent])
+        );
 
         const formattedAppointments: Appointment[] = appointmentsData.map(
-          (apt: any) => {
-            const agent = agentsMap.get(apt.agent_id);
+          (apt: AppointmentRow) => {
+            const agent = agentsMap.get(apt.agent_id || "");
 
             return {
               id: apt.id,
@@ -53,7 +75,9 @@ export function useAppointments() {
                 : "Date TBD",
               appointmentTime: apt.appointment_time || "Time TBD",
               reason: apt.reason || "General consultation",
-              status: apt.status || "scheduled",
+              status:
+                (apt.status as "scheduled" | "completed" | "cancelled") ||
+                "scheduled",
               agentName: agent?.name || apt.agent_id || "Unknown Agent",
               notes: apt.notes || "No notes",
               callId: apt.call_id || "",

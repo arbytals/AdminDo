@@ -24,239 +24,59 @@ export async function POST(req: Request) {
     const { call } = payload;
     const { call_analysis } = call;
 
-    // Extract agent name from transcript (first speaker who introduces themselves)
-    const extractAgentName = (transcript: string): string => {
-      const agentPatterns = [
-        /Agent:\s*Hello,?\s*this is\s+(\w+)/i,
-        /Agent:\s*Hi,?\s*I'm\s+(\w+)/i,
-        /Agent:\s*My name is\s+(\w+)/i,
-        /Agent:\s*This is\s+(\w+)/i,
+    // Extract appointment time from call summary (only thing not in custom_analysis_data)
+    const extractAppointmentTime = (summary: string, transcript: string) => {
+      // Extract appointment time from summary or transcript
+      const timePatterns = [
+        /at\s+(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))/i,
+        /at\s+(\d{1,2}\s*(?:AM|PM|am|pm))/i,
+        /(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))/i,
+        /(\d{1,2}\s*(?:AM|PM|am|pm))/i,
       ];
 
-      for (const pattern of agentPatterns) {
-        const match = transcript.match(pattern);
+      for (const pattern of timePatterns) {
+        const match = summary.match(pattern) || transcript.match(pattern);
         if (match && match[1]) {
-          return (
-            match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase()
-          );
+          return match[1];
         }
       }
-      return "Unknown Agent";
+
+      return "Time TBD";
     };
 
-    // Extract customer name from call summary (prioritize summary over transcript)
-    const extractCustomerName = (
-      summary: string,
-      transcript: string
-    ): string => {
-      // First try to extract from summary where it's more reliable
-      const summaryPatterns = [
-        /(?:customer|caller|client)\s+(?:named?\s+)?(\w+)/i,
-        /(?:with|for)\s+(\w+)(?:\s+(?:who|regarding|about))/i,
-        /(\w+)\s+(?:called|contacted|reached out)/i,
-        /(?:scheduled|booked).*?(?:for|with)\s+(\w+)/i,
-        /appointment.*?(?:for|with)\s+(\w+)/i,
-      ];
-
-
-      
-
-      for (const pattern of summaryPatterns) { 
-        const match = summary.match(pattern);
-        if (
-          match &&
-          match[1] &&
-          match[1].toLowerCase() !== "appointment" &&
-          match[1].toLowerCase() !== "consultation"
-        ) {
-          return (
-            match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase()
-          );
-        }
-      }
-
-      // Fallback to transcript patterns if summary doesn't have clear name
-      const transcriptPatterns = [
-        /User:\s*(?:Oh,?\s*)?(?:hi,?\s*)?(?:this is\s+|I'm\s+|my name is\s+)(\w+)/i,
-        /(?:my name is|i'm|this is|i am)\s+(\w+)/i,
-        /User:\s*(\w+)(?:\s+here|\.|\s*$)/i,
-      ];
-
-      for (const pattern of transcriptPatterns) {
-        const match = transcript.match(pattern);
-        if (match && match[1] && match[1].toLowerCase() !== "looking") {
-          return (
-            match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase()
-          );
-        }
-      }
-
-      return "Unknown Customer";
-    };
-
-    // Extract customer email from transcript - focus on agent spelling it out
-    const extractCustomerEmail = (transcript: string): string | null => {
-      // Regex to find the agent's confirmation of the email address
-      const confirmationPattern =
-        /Agent:.*?confirm.*?it's\s+(.+?)\s*,?\s*correct\?/i;
-
-      const match = transcript.match(confirmationPattern);
-
-      if (match && match[1]) {
-        let spelledOutEmail = match[1].toLowerCase();
-
-        // Standardize separators
-        spelledOutEmail = spelledOutEmail
-          .replace(/\s+at\s+/g, "@")
-          .replace(/\s+dot\s+/g, ".");
-
-        // Remove all remaining spaces and hyphens
-        const cleanedEmail = spelledOutEmail.replace(/[-\s]/g, "");
-
-        // Basic validation to ensure it looks like an email
-        if (cleanedEmail.includes("@") && cleanedEmail.includes(".")) {
-          return cleanedEmail;
-        }
-      }
-
-      // Fallback for user stating email directly if confirmation fails
-      const userStatingPattern = /User:.*?it's\s+(.+?)(?:\.|$|,)/i;
-      const userMatch = transcript.match(userStatingPattern);
-      if (userMatch && userMatch[1]) {
-        let spelledOutEmail = userMatch[1].toLowerCase();
-
-        // Standardize separators
-        spelledOutEmail = spelledOutEmail
-          .replace(/\s+at\s+/g, "@")
-          .replace(/\s+dot\s+/g, ".");
-
-        // Convert number words to digits - common for verbal emails
-        const numberConversions: { [key: string]: string } = {
-          "forty-five": "45",
-          "forty five": "45",
-          forty: "40",
-          thirty: "30",
-          twenty: "20",
-          five: "5",
-          four: "4",
-        };
-        for (const word in numberConversions) {
-          spelledOutEmail = spelledOutEmail.replace(
-            new RegExp(word, "g"),
-            numberConversions[word]
-          );
-        }
-
-        const cleanedEmail = spelledOutEmail.replace(/[-\s]/g, "");
-
-        if (cleanedEmail.includes("@") && cleanedEmail.includes(".")) {
-          return cleanedEmail;
-        }
-      }
-
-      return null;
-    };
-
-    // Extract appointment details from transcript and call_summary
-    const extractAppointmentDetails = (transcript: string, summary: string) => {
-      // Extract appointment date and time
-      const appointmentPatterns = [
-        /(?:Tuesday|Wednesday|Thursday|Friday|Monday|Saturday|Sunday)[,\s]*(?:June|July|August|September|October|November|December)?\s*\d{1,2}(?:st|nd|rd|th)?[,\s]*(?:at\s*)?(\d{1,2}(?::\d{2})?\s*(?:AM|PM|am|pm))/i,
-        /(\w+day)[,\s]*(?:at\s*)?(\d{1,2}(?::\d{2})?\s*(?:AM|PM|am|pm))/i,
-        /(?:booked|scheduled|appointment).*?(\w+day)[,\s]*(?:at\s*)?(\d{1,2}(?::\d{2})?\s*(?:AM|PM|am|pm))/i,
-      ];
-
-      let appointmentTime = null;
-      let appointmentDate = null;
-
-      for (const pattern of appointmentPatterns) {
-        const match = transcript.match(pattern) || summary.match(pattern);
-        if (match) {
-          if (match[2]) {
-            appointmentTime = match[2];
-            appointmentDate = match[1];
-          } else if (match[1]) {
-            appointmentTime = match[1];
-          }
-          break;
-        }
-      }
-
-      // Extract specific date if mentioned
-      const specificDatePattern =
-        /(\w+day)[,\s]*(\w+)\s*(\d{1,2})(?:st|nd|rd|th)?/i;
-      const specificMatch =
-        transcript.match(specificDatePattern) ||
-        summary.match(specificDatePattern);
-      if (specificMatch) {
-        appointmentDate = `${specificMatch[1]}, ${specificMatch[2]} ${specificMatch[3]}`;
-      }
-
-      // Extract reason/service from transcript and summary
-      const reasonPatterns = [
-        /(?:book|schedule|appointment for|looking for|need|want).*?(simple will|will|legal consultation|consultation|divorce|estate planning)/i,
-        /(?:service|appointment).*?for\s*(.*?)(?:\.|,|$)/i,
-      ];
-
-      let reason = "General consultation";
-      for (const pattern of reasonPatterns) {
-        const match = transcript.match(pattern) || summary.match(pattern);
-        if (match && match[1]) {
-          reason = match[1].trim();
-          break;
-        }
-      }
-
-      return {
-        appointmentDate,
-        appointmentTime: appointmentTime || "Time TBD",
-        reason,
-      };
-    };
-
-    // Get extracted data
-    const agentName = extractAgentName(call.transcript || "");
+    // Get data from custom_analysis_data with fallbacks
+    const agentName =
+      call_analysis.custom_analysis_data?.agent_name || "Unknown Agent";
     const customerName =
-      call_analysis.custom_analysis_data?.customer_name ||
-      extractCustomerName(
-        call_analysis.call_summary || "",
-        call.transcript || ""
-      );
+      call_analysis.custom_analysis_data?.customer_name || "Unknown Customer";
     const customerEmail =
-      call_analysis.custom_analysis_data?.customer_email ||
-      extractCustomerEmail(call.transcript || "");
+      call_analysis.custom_analysis_data?.customer_email || null;
+    const appointmentDate = call_analysis.custom_analysis_data?.date || null;
+    const appointmentTime = extractAppointmentTime(
+      call_analysis.call_summary || "",
+      call.transcript || ""
+    );
 
     // Debug logging for extraction
     console.log("Extraction results:", {
       agentName,
       customerName,
       customerEmail,
+      appointmentDate,
+      appointmentTime,
       hasCustomAnalysisData: !!call_analysis.custom_analysis_data,
-      summaryLength: (call_analysis.call_summary || "").length,
-      transcriptLength: (call.transcript || "").length,
+      callAgentId: call.agent_id,
     });
 
-    // Additional debug for email extraction
-    console.log("Email extraction debug:", {
-      transcriptSnippet: (call.transcript || "").substring(0, 500),
-      emailPattern1:
-        /Agent:.*?([a-zA-Z](?:-[a-zA-Z])*(?:-\d+)*)\s*(?:at|@)\s*([a-zA-Z]+)\s*(?:dot|\.)\s*([a-zA-Z]{2,})/i.test(
-          call.transcript || ""
-        ),
-      emailPattern2:
-        /User:.*?([a-zA-Z]+)\s+(?:forty|thirty|twenty|fifty|sixty|seventy|eighty|ninety|\d+)\s*(?:five|four|three|six|seven|eight|nine|\d+)?\s*(?:at|@)\s*([a-zA-Z]+)\s*(?:dot|\.)\s*([a-zA-Z]{2,})/i.test(
-          call.transcript || ""
-        ),
-      confirmationPattern:
-        /Agent:.*?confirm.*?email.*?([a-zA-Z-0-9]+)\s*(?:at|@)\s*([a-zA-Z]+)\s*(?:dot|\.)\s*([a-zA-Z]{2,})/i.test(
-          call.transcript || ""
-        ),
-    });
-
-    const appointmentDetails = extractAppointmentDetails(
-      call.transcript || "",
-      call_analysis.call_summary || ""
-    );
+    // Debug custom_analysis_data contents
+    if (call_analysis.custom_analysis_data) {
+      console.log(
+        "Custom analysis data:",
+        JSON.stringify(call_analysis.custom_analysis_data, null, 2)
+      );
+    } else {
+      console.log("No custom_analysis_data found");
+    }
 
     // Construct the data object for the 'calls' table matching actual database schema
     const callData = {
@@ -297,53 +117,250 @@ export async function POST(req: Request) {
       );
     }
 
-    // Update or insert agent data
-    const { data: existingAgent } = await supabase
+    // Update or insert agent data using the agent name from custom_analysis_data
+    console.log("Agent storage process:", {
+      retellAgentId: call.agent_id,
+      customAnalysisAgentName: agentName,
+      willSearchFor: call.agent_id,
+      willStoreName: agentName,
+    });
+
+    // Test if we can access the agents table at all
+    const { data: agentsTableTest, error: agentsTableError } = await supabase
+      .from("agents")
+      .select("count(*)")
+      .limit(1);
+
+    console.log("🔍 Agents table access test:", {
+      canAccessTable: !agentsTableError,
+      testResult: agentsTableTest,
+      error: agentsTableError,
+    });
+
+    const { data: existingAgent, error: existingAgentError } = await supabase
       .from("agents")
       .select("*")
       .eq("id", call.agent_id)
       .single();
 
+    console.log("🔍 Existing agent lookup:", {
+      agentId: call.agent_id,
+      foundAgent: !!existingAgent,
+      lookupError: existingAgentError,
+    });
+
+    console.log("Agent lookup result:", {
+      searchingForAgentId: call.agent_id,
+      foundExistingAgent: !!existingAgent,
+      existingAgentData: existingAgent,
+      agentNameToStore: agentName,
+    });
+
     if (!existingAgent) {
-      // Insert new agent
-      await supabase.from("agents").insert({
-        id: call.agent_id,
-        name: agentName,
-        email: `${agentName.toLowerCase().replace(" ", ".")}@admindo.com`,
+      // Insert new agent with Retell agent_id as primary key and custom_analysis_data name
+      const newAgentData = {
+        id: call.agent_id, // Use Retell's agent_id as the primary key
+        name: agentName, // Use the name from custom_analysis_data
+        email: `${agentName.toLowerCase().replace(/\s+/g, ".")}@admindo.com`,
         status: "active",
+      };
+
+      console.log("🔍 About to insert new agent:", newAgentData);
+      console.log("🔍 Using supabase service client:", !!supabase);
+
+      const { data: insertedAgent, error: agentInsertError } = await supabase
+        .from("agents")
+        .insert(newAgentData)
+        .select(); // Add select to get the inserted data back
+
+      console.log("🔍 Agent insertion result:", {
+        insertedAgent,
+        error: agentInsertError,
+        errorDetails: agentInsertError
+          ? {
+              message: agentInsertError.message,
+              details: agentInsertError.details,
+              hint: agentInsertError.hint,
+              code: agentInsertError.code,
+            }
+          : null,
       });
+
+      if (agentInsertError) {
+        console.error("❌ Error inserting agent:", agentInsertError);
+        console.error(
+          "❌ Full agent insert error object:",
+          JSON.stringify(agentInsertError, null, 2)
+        );
+      } else {
+        console.log("✅ New agent inserted successfully:", {
+          id: call.agent_id,
+          name: agentName,
+          insertedData: insertedAgent,
+        });
+      }
     } else {
-      // Update existing agent name if we have a better one
+      // Update existing agent name if we have a better one from custom_analysis_data
       if (agentName !== "Unknown Agent" && existingAgent.name !== agentName) {
-        await supabase
+        console.log("Updating existing agent name:", {
+          agentId: call.agent_id,
+          oldName: existingAgent.name,
+          newName: agentName,
+        });
+
+        const { error: agentUpdateError } = await supabase
           .from("agents")
-          .update({ name: agentName, status: "active" })
+          .update({
+            name: agentName,
+            status: "active",
+            updated_at: new Date().toISOString(),
+          })
           .eq("id", call.agent_id);
+
+        if (agentUpdateError) {
+          console.error("Error updating agent:", agentUpdateError);
+        } else {
+          console.log("✅ Agent name updated successfully:", {
+            agentId: call.agent_id,
+            newName: agentName,
+          });
+        }
+      } else {
+        console.log("No agent update needed:", {
+          agentId: call.agent_id,
+          currentName: existingAgent.name,
+          providedName: agentName,
+          reason:
+            existingAgent.name === agentName
+              ? "names match"
+              : "provided name is Unknown Agent",
+        });
       }
     }
 
     // If an appointment was successfully booked, create a new record in the 'appointments' table.
-    if (call_analysis.call_successful) {
-      // Format appointment date properly
+    if (
+      call_analysis.call_successful &&
+      appointmentDate &&
+      appointmentTime !== "Time TBD"
+    ) {
+      console.log("📅 Processing appointment booking:", {
+        callSuccessful: call_analysis.call_successful,
+        appointmentDate,
+        appointmentTime,
+        customerName,
+        customerEmail,
+        agentId: call.agent_id,
+        agentName,
+      });
+
+      // Format appointment date properly from custom_analysis_data
       let formattedDate = null;
-      if (appointmentDetails.appointmentDate) {
+      let formattedTime = appointmentTime;
+
+      if (appointmentDate) {
         try {
-          // Try to parse and format the date
-          const dateString = appointmentDetails.appointmentDate;
-          if (dateString.includes("June") || dateString.includes("Tuesday")) {
-            // For "Tuesday, June 24" format, assume current year
+          console.log("🔍 Starting date parsing:", {
+            original: appointmentDate,
+          });
+
+          // Handle different date formats from custom_analysis_data
+          let dateString = appointmentDate;
+
+          // Remove ordinal suffixes (st, nd, rd, th) from dates
+          dateString = dateString.replace(/(\d+)(st|nd|rd|th)/g, "$1");
+
+          // Handle formats like "Thursday, June 26, 2025" or "June 26, 2025"
+          if (dateString.includes(",")) {
+            // Split by comma and get the parts
+            const parts = dateString.split(",").map((p: string) => p.trim());
+
+            if (parts.length >= 2) {
+              // If we have "Thursday, June 26, 2025" - use the middle parts
+              if (parts.length === 3) {
+                dateString = `${parts[1]}, ${parts[2]}`; // "June 26, 2025"
+              } else if (parts.length === 2) {
+                dateString = `${parts[0]}, ${parts[1]}`; // "June 26, 2025"
+              }
+            }
+          } else {
+            // Handle simple formats like "June 26th" - add current year
             const currentYear = new Date().getFullYear();
-            const fullDateString = `${dateString}, ${currentYear}`;
-            const parsedDate = new Date(fullDateString);
-            if (!isNaN(parsedDate.getTime())) {
-              formattedDate = parsedDate.toISOString().split("T")[0]; // YYYY-MM-DD format
+            if (!dateString.includes(currentYear.toString())) {
+              dateString = `${dateString}, ${currentYear}`;
             }
           }
+
+          console.log("🔍 Cleaned date string:", { cleaned: dateString });
+
+          // Parse the cleaned date string
+          const parsedDate = new Date(dateString);
+
+          console.log("🔍 Parsed date object:", {
+            parsedDate,
+            isValid: !isNaN(parsedDate.getTime()),
+            getTime: parsedDate.getTime(),
+          });
+
+          if (!isNaN(parsedDate.getTime())) {
+            // Format as YYYY-MM-DD in local timezone to avoid timezone shifts
+            const year = parsedDate.getFullYear();
+            const month = String(parsedDate.getMonth() + 1).padStart(2, "0");
+            const day = String(parsedDate.getDate()).padStart(2, "0");
+            formattedDate = `${year}-${month}-${day}`;
+
+            console.log("📅 Date formatting successful:", {
+              original: appointmentDate,
+              cleaned: dateString,
+              parsed: parsedDate,
+              formatted: formattedDate,
+            });
+          } else {
+            throw new Error("Invalid date after parsing");
+          }
         } catch (error) {
-          console.log(
-            "Date parsing failed, using original:",
-            appointmentDetails.appointmentDate
+          console.log("❌ Date parsing failed, keeping original:", {
+            original: appointmentDate,
+            error: error instanceof Error ? error.message : String(error),
+          });
+          formattedDate = appointmentDate; // Keep original if parsing fails
+        }
+      }
+
+      // Format appointment time to 24-hour format for better storage
+      if (appointmentTime && appointmentTime !== "Time TBD") {
+        try {
+          // Convert formats like "10 AM", "3:30 PM" to 24-hour format
+          const timeMatch = appointmentTime.match(
+            /(\d{1,2})(?::(\d{2}))?\s*(AM|PM)/i
           );
+          if (timeMatch) {
+            let hours = parseInt(timeMatch[1]);
+            const minutes = timeMatch[2] ? parseInt(timeMatch[2]) : 0;
+            const period = timeMatch[3].toUpperCase();
+
+            // Convert to 24-hour format
+            if (period === "PM" && hours !== 12) {
+              hours += 12;
+            } else if (period === "AM" && hours === 12) {
+              hours = 0;
+            }
+
+            formattedTime = `${String(hours).padStart(2, "0")}:${String(
+              minutes
+            ).padStart(2, "0")}`;
+
+            console.log("🕐 Time formatting:", {
+              original: appointmentTime,
+              formatted: formattedTime,
+            });
+          }
+        } catch (error) {
+          console.log("⚠️ Time formatting failed, keeping original:", {
+            original: appointmentTime,
+            error: error instanceof Error ? error.message : String(error),
+          });
+          // Keep original format if conversion fails
         }
       }
 
@@ -353,12 +370,16 @@ export async function POST(req: Request) {
         customer_email: customerEmail,
         customer_phone: call.from_number || null,
         appointment_date: formattedDate,
-        appointment_time: appointmentDetails.appointmentTime,
-        reason: appointmentDetails.reason,
+        appointment_time: formattedTime,
+        reason: "General consultation",
         status: "scheduled",
-        agent_id: call.agent_id,
-        notes: `Appointment scheduled via call. ${call_analysis.call_summary}`,
+        agent_id: call.agent_id, // This links to the agent table
+        notes: `Appointment scheduled via call. ${
+          call_analysis.call_summary || ""
+        }`,
       };
+
+      console.log("📅 Inserting appointment data:", appointmentData);
 
       const { error: appointmentInsertError } = await supabase
         .from("appointments")
@@ -366,11 +387,26 @@ export async function POST(req: Request) {
 
       if (appointmentInsertError) {
         console.error(
-          "Error inserting appointment data into Supabase:",
+          "❌ Error inserting appointment data into Supabase:",
           appointmentInsertError
         );
         // We don't return an error here because the primary call data was already saved.
+      } else {
+        console.log("✅ Appointment inserted successfully:", {
+          callId: call.call_id,
+          customer: customerName,
+          agent: agentName,
+          date: formattedDate,
+          time: formattedTime,
+        });
       }
+    } else {
+      console.log("ℹ️ No appointment to book:", {
+        callSuccessful: call_analysis.call_successful,
+        hasDate: !!appointmentDate,
+        hasTime: appointmentTime !== "Time TBD",
+        appointmentTime,
+      });
     }
 
     return NextResponse.json(
