@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { LayoutContainer } from "@/components/layout-container";
 import Image from "next/image";
 import Link from "next/link";
