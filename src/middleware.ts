@@ -52,6 +52,9 @@ export async function middleware(request: NextRequest) {
       "/signup", // Signup page
       "/about", // About page
       "/pricing", // Pricing page
+      "/calls", // Calls page
+      "/email", // Email page
+      "/social-media", // Social media page
       "/features", // Features page
       "/privacy", // Privacy policy
       "/terms", // Terms of service

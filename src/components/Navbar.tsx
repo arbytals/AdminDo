@@ -61,6 +61,10 @@ export default function Navbar() {
     setActiveDropdown(null);
   };
 
+  const closeDropdown = () => {
+    setActiveDropdown(null);
+  };
+
   return (
     <header
       className={`sticky top-0 w-full z-50 transition-all duration-200 ${
@@ -69,7 +73,7 @@ export default function Navbar() {
           : "bg-[#fafaf9] border-b border-gray-100 dark:bg-gray-900 dark:border-gray-800"
       }`}>
       <LayoutContainer>
-        <div className="flex h-20 items-center justify-between max-w-7xl mx-auto">
+        <div className="flex h-16 sm:h-20 items-center justify-between max-w-7xl mx-auto">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <Image
@@ -77,16 +81,16 @@ export default function Navbar() {
                 alt="AdminDo Logo"
                 priority={true}
                 quality={100}
-                className="h-8 w-8"
+                className="h-6 w-6 sm:h-8 sm:w-8"
               />
-              <span className="ml-2 text-xl font-bold text-[#5b21b6] dark:text-purple-400">
+              <span className="ml-2 text-lg sm:text-xl font-bold text-[#5b21b6] dark:text-purple-400">
                 AdminDo
               </span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             <div className="relative">
               <button
                 onClick={() => toggleDropdown("products")}
@@ -95,19 +99,22 @@ export default function Navbar() {
                 <ChevronDown className="ml-1 h-4 w-4" />
               </button>
               {activeDropdown === "products" && (
-                <div className="absolute top-full left-0 mt-2 w-[800px] rounded-md bg-white dark:bg-gray-800 shadow-lg -translate-x-1/4">
-                  <div className="p-6 grid grid-cols-2 gap-8">
-                    <div className="space-y-6">
-                      <Link href="#" className="block group">
-                        <div className="flex items-start gap-4 p-2 rounded-lg hover:bg-[#f3f0ff] dark:hover:bg-purple-900/30 transition-colors">
+                <div className="absolute top-full left-0 mt-2 w-[700px] xl:w-[800px] rounded-md bg-white dark:bg-gray-800 shadow-lg -translate-x-1/4">
+                  <div className="p-4 xl:p-6 grid grid-cols-2 gap-6 xl:gap-8">
+                    <div className="space-y-4 xl:space-y-6">
+                      <Link
+                        href="/calls"
+                        className="block group"
+                        onClick={closeDropdown}>
+                        <div className="flex items-start gap-3 xl:gap-4 p-2 rounded-lg hover:bg-[#f3f0ff] dark:hover:bg-purple-900/30 transition-colors">
                           <div className="bg-[#f3f0ff] dark:bg-purple-900/30 p-2 rounded-full">
-                            <PhoneIncoming className="h-5 w-5 text-[#5b21b6] dark:text-purple-400" />
+                            <PhoneIncoming className="h-4 w-4 xl:h-5 xl:w-5 text-[#5b21b6] dark:text-purple-400" />
                           </div>
                           <div>
-                            <h3 className="font-medium text-[#5b21b6] dark:text-purple-400 group-hover:text-[#4c1d95] dark:group-hover:text-purple-300 transition-colors">
+                            <h3 className="font-medium text-sm xl:text-base text-[#5b21b6] dark:text-purple-400 group-hover:text-[#4c1d95] dark:group-hover:text-purple-300 transition-colors">
                               Inbound Calls
                             </h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                            <p className="text-xs xl:text-sm text-gray-600 dark:text-gray-300 mt-1">
                               Our AI assistants, Rina, Riley and Reagan, handle
                               inbound calls with real-time transcription and
                               sentiment analysis.
@@ -116,50 +123,61 @@ export default function Navbar() {
                         </div>
                       </Link>
 
-                      <div className="opacity-60 cursor-not-allowed">
-                        <div className="flex items-start gap-4">
-                          <div className="bg-[#f3f0ff]/50 dark:bg-purple-900/20 p-2 rounded-full">
-                            <Mail className="h-5 w-5 text-[#5b21b6]/50 dark:text-purple-400/50" />
+                      <Link
+                        href="/email"
+                        className="block group"
+                        onClick={closeDropdown}>
+                        <div className="flex items-start gap-3 xl:gap-4 p-2 rounded-lg hover:bg-[#f3f0ff] dark:hover:bg-purple-900/30 transition-colors">
+                          <div className="bg-[#f3f0ff] dark:bg-purple-900/30 p-2 rounded-full">
+                            <Mail className="h-4 w-4 xl:h-5 xl:w-5 text-[#5b21b6] dark:text-purple-400" />
                           </div>
                           <div>
-                            <h3 className="font-medium text-[#5b21b6]/70 dark:text-purple-400/70">
-                              Email Handling & Organization
+                            <h3 className="font-medium text-sm xl:text-base text-[#5b21b6] dark:text-purple-400 group-hover:text-[#4c1d95] dark:group-hover:text-purple-300 transition-colors">
+                              Email to Invoice Automation
                             </h3>
-                            <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
-                              Coming soon
+                            <p className="text-xs xl:text-sm text-gray-600 dark:text-gray-300 mt-1">
+                              Turn incoming emails into organized quotes,
+                              invoices, and tracked payments, automatically.
                             </p>
                           </div>
                         </div>
-                      </div>
+                      </Link>
 
-                      <div className="opacity-60 cursor-not-allowed">
-                        <div className="flex items-start gap-4">
-                          <div className="bg-[#f3f0ff]/50 dark:bg-purple-900/20 p-2 rounded-full">
-                            <MessageSquare className="h-5 w-5 text-[#5b21b6]/50 dark:text-purple-400/50" />
+                      <Link
+                        href="/support"
+                        className="block group"
+                        onClick={closeDropdown}>
+                        <div className="flex items-start gap-3 xl:gap-4 p-2 rounded-lg hover:bg-[#f3f0ff] dark:hover:bg-purple-900/30 transition-colors">
+                          <div className="bg-[#f3f0ff] dark:bg-purple-900/30 p-2 rounded-full">
+                            <MessageSquare className="h-4 w-4 xl:h-5 xl:w-5 text-[#5b21b6] dark:text-purple-400" />
                           </div>
                           <div>
-                            <h3 className="font-medium text-[#5b21b6]/70 dark:text-purple-400/70">
-                              Support Maintenance
+                            <h3 className="font-medium text-sm xl:text-base text-[#5b21b6] dark:text-purple-400 group-hover:text-[#4c1d95] dark:group-hover:text-purple-300 transition-colors">
+                              Ongoing Support & Maintenance
                             </h3>
-                            <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
-                              Coming soon
+                            <p className="text-xs xl:text-sm text-gray-600 dark:text-gray-300 mt-1">
+                              We continuously monitor, update, and optimize your
+                              AI assistant for peak performance.
                             </p>
                           </div>
                         </div>
-                      </div>
+                      </Link>
                     </div>
 
-                    <div className="space-y-6">
-                      <Link href="#" className="block group">
-                        <div className="flex items-start gap-4 p-2 rounded-lg hover:bg-[#f3f0ff] dark:hover:bg-purple-900/30 transition-colors">
+                    <div className="space-y-4 xl:space-y-6">
+                      <Link
+                        href="/calls"
+                        className="block group"
+                        onClick={closeDropdown}>
+                        <div className="flex items-start gap-3 xl:gap-4 p-2 rounded-lg hover:bg-[#f3f0ff] dark:hover:bg-purple-900/30 transition-colors">
                           <div className="bg-[#f3f0ff] dark:bg-purple-900/30 p-2 rounded-full">
-                            <PhoneOutgoing className="h-5 w-5 text-[#5b21b6] dark:text-purple-400" />
+                            <PhoneOutgoing className="h-4 w-4 xl:h-5 xl:w-5 text-[#5b21b6] dark:text-purple-400" />
                           </div>
                           <div>
-                            <h3 className="font-medium text-[#5b21b6] dark:text-purple-400 group-hover:text-[#4c1d95] dark:group-hover:text-purple-300 transition-colors">
+                            <h3 className="font-medium text-sm xl:text-base text-[#5b21b6] dark:text-purple-400 group-hover:text-[#4c1d95] dark:group-hover:text-purple-300 transition-colors">
                               Outbound Calls
                             </h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                            <p className="text-xs xl:text-sm text-gray-600 dark:text-gray-300 mt-1">
                               Jumus and Jilana, our proactive AI will handle
                               follow-ups and reminder calls with a friendly,
                               reliable touch.
@@ -168,33 +186,40 @@ export default function Navbar() {
                         </div>
                       </Link>
 
-                      <div className="opacity-60 cursor-not-allowed">
-                        <div className="flex items-start gap-4">
-                          <div className="bg-[#f3f0ff]/50 dark:bg-purple-900/20 p-2 rounded-full">
-                            <Users className="h-5 w-5 text-[#5b21b6]/50 dark:text-purple-400/50" />
+                      <Link
+                        href="/social-media"
+                        className="block group"
+                        onClick={closeDropdown}>
+                        <div className="flex items-start gap-3 xl:gap-4 p-2 rounded-lg hover:bg-[#f3f0ff] dark:hover:bg-purple-900/30 transition-colors">
+                          <div className="bg-[#f3f0ff] dark:bg-purple-900/30 p-2 rounded-full">
+                            <Users className="h-4 w-4 xl:h-5 xl:w-5 text-[#5b21b6] dark:text-purple-400" />
                           </div>
                           <div>
-                            <h3 className="font-medium text-[#5b21b6]/70 dark:text-purple-400/70">
+                            <h3 className="font-medium text-sm xl:text-base text-[#5b21b6] dark:text-purple-400 group-hover:text-[#4c1d95] dark:group-hover:text-purple-300 transition-colors">
                               Social Media Management
                             </h3>
-                            <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
-                              Coming soon
+                            <p className="text-xs xl:text-sm text-gray-600 dark:text-gray-300 mt-1">
+                              Schedule posts, reply to comments, and analyse
+                              performance from one AI-powered hub.
                             </p>
                           </div>
                         </div>
-                      </div>
+                      </Link>
 
-                      <Link href="#" className="block group">
-                        <div className="bg-[#5b21b6] dark:bg-purple-800 rounded-lg p-4 flex items-start gap-3 hover:bg-[#4c1d95] dark:hover:bg-purple-700 transition-colors">
+                      <Link
+                        href="/contact"
+                        className="block group"
+                        onClick={closeDropdown}>
+                        <div className="bg-[#5b21b6] dark:bg-purple-800 rounded-lg p-3 xl:p-4 flex items-start gap-3 hover:bg-[#4c1d95] dark:hover:bg-purple-700 transition-colors">
                           <div className="bg-white/20 p-2 rounded-full">
-                            <Sparkles className="h-5 w-5 text-white" />
+                            <Sparkles className="h-4 w-4 xl:h-5 xl:w-5 text-white" />
                           </div>
                           <div>
-                            <h3 className="font-medium text-white flex items-center">
+                            <h3 className="font-medium text-sm xl:text-base text-white flex items-center">
                               Custom{" "}
                               <span className="ml-1 text-yellow-300">✨</span>
                             </h3>
-                            <p className="text-sm text-white/90 mt-1">
+                            <p className="text-xs xl:text-sm text-white/90 mt-1">
                               A tailored solution that fits your business
                               perfectly
                             </p>
@@ -215,52 +240,58 @@ export default function Navbar() {
                 <ChevronDown className="ml-1 h-4 w-4" />
               </button>
               {activeDropdown === "solutions" && (
-                <div className="absolute top-full left-0 mt-2 w-[700px] rounded-md bg-white dark:bg-gray-800 shadow-lg -translate-x-1/4">
-                  <div className="p-6 grid grid-cols-2 gap-8">
+                <div className="absolute top-full left-0 mt-2 w-[600px] xl:w-[700px] rounded-md bg-white dark:bg-gray-800 shadow-lg -translate-x-1/4">
+                  <div className="p-4 xl:p-6 grid grid-cols-2 gap-6 xl:gap-8">
                     <div>
-                      <h3 className="uppercase text-xs font-semibold text-[#5B21B6] dark:text-[#5B21B6] mb-4">
+                      <h3 className="uppercase text-xs font-semibold text-[#5B21B6] dark:text-[#5B21B6] mb-3 xl:mb-4">
                         USE CASES
                       </h3>
-                      <ul className="space-y-3">
+                      <ul className="space-y-2 xl:space-y-3">
                         <li>
                           <Link
                             href="#"
-                            className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
+                            onClick={closeDropdown}
+                            className="text-sm xl:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
                             Office Administrator
                           </Link>
                         </li>
                         <li>
                           <Link
                             href="#"
-                            className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
+                            onClick={closeDropdown}
+                            className="text-sm xl:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
                             Front-Desk Receptionist
                           </Link>
                         </li>
                         <li>
                           <Link
                             href="#"
-                            className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
+                            onClick={closeDropdown}
+                            className="text-sm xl:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
                             Sales Representative
                           </Link>
                         </li>
                         <li>
                           <Link
                             href="#"
-                            className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
+                            onClick={closeDropdown}
+                            className="text-sm xl:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
                             Customer Support Agent
                           </Link>
                         </li>
                         <li>
                           <Link
                             href="#"
-                            className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
+                            onClick={closeDropdown}
+                            className="text-sm xl:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
                             Social Media Manager
                           </Link>
                         </li>
                         <li>
                           <Link
                             href="#"
-                            className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
+                            onClick={closeDropdown}
+                            className="text-sm xl:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
                             Operations Analyst
                           </Link>
                         </li>
@@ -268,49 +299,55 @@ export default function Navbar() {
                     </div>
 
                     <div>
-                      <h3 className="uppercase text-xs font-semibold text-[#5B21B6] dark:text-[#5B21B6] mb-4">
+                      <h3 className="uppercase text-xs font-semibold text-[#5B21B6] dark:text-[#5B21B6] mb-3 xl:mb-4">
                         INDUSTRIES
                       </h3>
-                      <ul className="space-y-3">
+                      <ul className="space-y-2 xl:space-y-3">
                         <li>
                           <Link
                             href="#"
-                            className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
+                            onClick={closeDropdown}
+                            className="text-sm xl:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
                             Retail
                           </Link>
                         </li>
                         <li>
                           <Link
                             href="#"
-                            className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
+                            onClick={closeDropdown}
+                            className="text-sm xl:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
                             Travel
                           </Link>
                         </li>
                         <li>
                           <Link
                             href="#"
-                            className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
+                            onClick={closeDropdown}
+                            className="text-sm xl:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
                             Legal
                           </Link>
                         </li>
                         <li>
                           <Link
                             href="#"
-                            className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
+                            onClick={closeDropdown}
+                            className="text-sm xl:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
                             Healthcare
                           </Link>
                         </li>
                         <li>
                           <Link
                             href="#"
-                            className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
+                            onClick={closeDropdown}
+                            className="text-sm xl:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
                             Real Estate
                           </Link>
                         </li>
                         <li>
                           <Link
                             href="#"
-                            className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
+                            onClick={closeDropdown}
+                            className="text-sm xl:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
                             Financial Services
                           </Link>
                         </li>
@@ -339,16 +376,19 @@ export default function Navbar() {
                   <div className="py-1">
                     <Link
                       href="#"
+                      onClick={closeDropdown}
                       className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
                       Blog
                     </Link>
                     <Link
                       href="#"
+                      onClick={closeDropdown}
                       className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
                       Case Studies
                     </Link>
                     <Link
                       href="#"
+                      onClick={closeDropdown}
                       className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
                       Documentation
                     </Link>
@@ -362,23 +402,23 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             <ThemeToggle />
 
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <button
                 onClick={toggleMobileMenu}
                 className="text-[#0c0a09] dark:text-gray-200 p-2 focus:outline-none"
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}>
                 {mobileMenuOpen ? (
-                  <X className="h-6 w-6" />
+                  <X className="h-5 w-5 sm:h-6 sm:w-6" />
                 ) : (
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
                 )}
               </button>
             </div>
           </div>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button className="bg-[#5b21b6] hover:bg-[#4c1d95] dark:bg-purple-700 dark:hover:bg-purple-800 text-white rounded-full p-6 cursor-pointer">
+          <div className="hidden lg:block">
+            <Button className="bg-[#5b21b6] hover:bg-[#4c1d95] dark:bg-purple-700 dark:hover:bg-purple-800 text-white rounded-full px-4 xl:px-6 py-2 xl:py-3 text-sm xl:text-base cursor-pointer">
               <Link href="/signup" className="text-white">
                 Start for Free
               </Link>
@@ -391,9 +431,9 @@ export default function Navbar() {
       <div
         className={`fixed inset-0 bg-white dark:bg-gray-900 z-40 transform transition-transform duration-300 ease-in-out ${
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        } md:hidden overflow-y-auto`}>
-        <LayoutContainer className="py-6">
-          <div className="flex justify-between items-center mb-8">
+        } lg:hidden overflow-y-auto`}>
+        <LayoutContainer className="py-4 sm:py-6">
+          <div className="flex justify-between items-center mb-6 sm:mb-8">
             <Link
               href="/"
               className="flex items-center"
@@ -403,9 +443,9 @@ export default function Navbar() {
                 alt="AdminDo Logo"
                 priority={true}
                 quality={100}
-                className="h-8 w-8"
+                className="h-6 w-6 sm:h-8 sm:w-8"
               />
-              <span className="ml-2 text-xl font-bold text-[#5b21b6] dark:text-purple-400">
+              <span className="ml-2 text-lg sm:text-xl font-bold text-[#5b21b6] dark:text-purple-400">
                 AdminDo
               </span>
             </Link>
@@ -413,34 +453,39 @@ export default function Navbar() {
               onClick={toggleMobileMenu}
               className="text-[#0c0a09] dark:text-gray-200 p-2 focus:outline-none"
               aria-label="Close menu">
-              <X className="h-6 w-6" />
+              <X className="h-5 w-5 sm:h-6 sm:w-6" />
             </button>
           </div>
 
-          <nav className="flex flex-col space-y-6">
+          <nav className="flex flex-col space-y-4 sm:space-y-6">
             <div className="border-b border-gray-100 dark:border-gray-800 pb-4">
               <button
                 onClick={() => toggleDropdown("mobile-products")}
                 className="flex items-center justify-between w-full text-[#0c0a09] dark:text-gray-200 py-2 cursor-pointer">
-                <span className="text-lg font-medium">Products</span>
+                <span className="text-base sm:text-lg font-medium">
+                  Products
+                </span>
                 <ChevronDown
-                  className={`h-5 w-5 transition-transform ${
+                  className={`h-4 w-4 sm:h-5 sm:w-5 transition-transform ${
                     activeDropdown === "mobile-products" ? "rotate-180" : ""
                   }`}
                 />
               </button>
               {activeDropdown === "mobile-products" && (
-                <div className="mt-4 space-y-6">
-                  <Link href="#" className="block group">
+                <div className="mt-3 sm:mt-4 space-y-4 sm:space-y-6">
+                  <Link
+                    href="/calls"
+                    className="block group"
+                    onClick={closeMobileMenu}>
                     <div className="flex items-start gap-3 p-2 rounded-lg hover:bg-[#f3f0ff] dark:hover:bg-purple-900/30 transition-colors">
                       <div className="bg-[#f3f0ff] dark:bg-purple-900/30 p-2 rounded-full flex-shrink-0">
-                        <PhoneIncoming className="h-5 w-5 text-[#5b21b6] dark:text-purple-400" />
+                        <PhoneIncoming className="h-4 w-4 sm:h-5 sm:w-5 text-[#5b21b6] dark:text-purple-400" />
                       </div>
                       <div>
-                        <h3 className="font-medium text-[#5b21b6] dark:text-purple-400 group-hover:text-[#4c1d95] dark:group-hover:text-purple-300 transition-colors">
+                        <h3 className="font-medium text-sm sm:text-base text-[#5b21b6] dark:text-purple-400 group-hover:text-[#4c1d95] dark:group-hover:text-purple-300 transition-colors">
                           Inbound Calls
                         </h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">
                           Our AI assistants, Rina, Riley and Reagan, handle
                           inbound calls with real-time transcription and
                           sentiment analysis.
@@ -449,16 +494,19 @@ export default function Navbar() {
                     </div>
                   </Link>
 
-                  <Link href="#" className="block group">
+                  <Link
+                    href="/calls"
+                    className="block group"
+                    onClick={closeMobileMenu}>
                     <div className="flex items-start gap-3 p-2 rounded-lg hover:bg-[#f3f0ff] dark:hover:bg-purple-900/30 transition-colors">
                       <div className="bg-[#f3f0ff] dark:bg-purple-900/30 p-2 rounded-full flex-shrink-0">
-                        <PhoneOutgoing className="h-5 w-5 text-[#5b21b6] dark:text-purple-400" />
+                        <PhoneOutgoing className="h-4 w-4 sm:h-5 sm:w-5 text-[#5b21b6] dark:text-purple-400" />
                       </div>
                       <div>
-                        <h3 className="font-medium text-[#5b21b6] dark:text-purple-400 group-hover:text-[#4c1d95] dark:group-hover:text-purple-300 transition-colors">
+                        <h3 className="font-medium text-sm sm:text-base text-[#5b21b6] dark:text-purple-400 group-hover:text-[#4c1d95] dark:group-hover:text-purple-300 transition-colors">
                           Outbound Calls
                         </h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">
                           Jumus and Jilana, our proactive AI will handle
                           follow-ups and reminder calls with a friendly,
                           reliable touch.
@@ -467,65 +515,80 @@ export default function Navbar() {
                     </div>
                   </Link>
 
-                  <div className="opacity-60 cursor-not-allowed">
-                    <div className="flex items-start gap-3">
-                      <div className="bg-[#f3f0ff]/50 dark:bg-purple-900/20 p-2 rounded-full flex-shrink-0">
-                        <Mail className="h-5 w-5 text-[#5b21b6]/50 dark:text-purple-400/50" />
+                  <Link
+                    href="/email"
+                    className="block group"
+                    onClick={closeMobileMenu}>
+                    <div className="flex items-start gap-3 p-2 rounded-lg hover:bg-[#f3f0ff] dark:hover:bg-purple-900/30 transition-colors">
+                      <div className="bg-[#f3f0ff] dark:bg-purple-900/30 p-2 rounded-full flex-shrink-0">
+                        <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-[#5b21b6] dark:text-purple-400" />
                       </div>
                       <div>
-                        <h3 className="font-medium text-[#5b21b6]/70 dark:text-purple-400/70">
-                          Email Handling & Organization
+                        <h3 className="font-medium text-sm sm:text-base text-[#5b21b6] dark:text-purple-400 group-hover:text-[#4c1d95] dark:group-hover:text-purple-300 transition-colors">
+                          Email to Invoice Automation
                         </h3>
-                        <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
-                          Coming soon
+                        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">
+                          Turn incoming emails into organized quotes, invoices,
+                          and tracked payments, automatically.
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </Link>
 
-                  <div className="opacity-60 cursor-not-allowed">
-                    <div className="flex items-start gap-3">
-                      <div className="bg-[#f3f0ff]/50 dark:bg-purple-900/20 p-2 rounded-full flex-shrink-0">
-                        <Users className="h-5 w-5 text-[#5b21b6]/50 dark:text-purple-400/50" />
+                  <Link
+                    href="/social-media"
+                    className="block group"
+                    onClick={closeMobileMenu}>
+                    <div className="flex items-start gap-3 p-2 rounded-lg hover:bg-[#f3f0ff] dark:hover:bg-purple-900/30 transition-colors">
+                      <div className="bg-[#f3f0ff] dark:bg-purple-900/30 p-2 rounded-full flex-shrink-0">
+                        <Users className="h-4 w-4 sm:h-5 sm:w-5 text-[#5b21b6] dark:text-purple-400" />
                       </div>
                       <div>
-                        <h3 className="font-medium text-[#5b21b6]/70 dark:text-purple-400/70">
+                        <h3 className="font-medium text-sm sm:text-base text-[#5b21b6] dark:text-purple-400 group-hover:text-[#4c1d95] dark:group-hover:text-purple-300 transition-colors">
                           Social Media Management
                         </h3>
-                        <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
-                          Coming soon
+                        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">
+                          Schedule posts, reply to comments, and analyse
+                          performance from one AI-powered hub.
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </Link>
 
-                  <div className="opacity-60 cursor-not-allowed">
-                    <div className="flex items-start gap-3">
-                      <div className="bg-[#f3f0ff]/50 dark:bg-purple-900/20 p-2 rounded-full flex-shrink-0">
-                        <MessageSquare className="h-5 w-5 text-[#5b21b6]/50 dark:text-purple-400/50" />
+                  <Link
+                    href="/support"
+                    className="block group"
+                    onClick={closeMobileMenu}>
+                    <div className="flex items-start gap-3 p-2 rounded-lg hover:bg-[#f3f0ff] dark:hover:bg-purple-900/30 transition-colors">
+                      <div className="bg-[#f3f0ff] dark:bg-purple-900/30 p-2 rounded-full flex-shrink-0">
+                        <MessageSquare className="h-4 w-4 sm:h-5 sm:w-5 text-[#5b21b6] dark:text-purple-400" />
                       </div>
                       <div>
-                        <h3 className="font-medium text-[#5b21b6]/70 dark:text-purple-400/70">
-                          Support Maintenance
+                        <h3 className="font-medium text-sm sm:text-base text-[#5b21b6] dark:text-purple-400 group-hover:text-[#4c1d95] dark:group-hover:text-purple-300 transition-colors">
+                          Ongoing Support & Maintenance
                         </h3>
-                        <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
-                          Coming soon
+                        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">
+                          We continuously monitor, update, and optimize your AI
+                          assistant for peak performance.
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </Link>
 
-                  <Link href="#" className="block group">
-                    <div className="bg-[#5b21b6] dark:bg-purple-800 rounded-lg p-4 flex items-start gap-3 hover:bg-[#4c1d95] dark:hover:bg-purple-700 transition-colors">
+                  <Link
+                    href="/contact"
+                    className="block group"
+                    onClick={closeMobileMenu}>
+                    <div className="bg-[#5b21b6] dark:bg-purple-800 rounded-lg p-3 sm:p-4 flex items-start gap-3 hover:bg-[#4c1d95] dark:hover:bg-purple-700 transition-colors">
                       <div className="bg-white/20 p-2 rounded-full flex-shrink-0">
-                        <Sparkles className="h-5 w-5 text-white" />
+                        <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
                       </div>
                       <div>
-                        <h3 className="font-medium text-white flex items-center">
+                        <h3 className="font-medium text-sm sm:text-base text-white flex items-center">
                           Custom{" "}
                           <span className="ml-1 text-yellow-300">✨</span>
                         </h3>
-                        <p className="text-sm text-white/90 mt-1">
+                        <p className="text-xs sm:text-sm text-white/90 mt-1">
                           A tailored solution that fits your business perfectly
                         </p>
                       </div>
@@ -539,59 +602,61 @@ export default function Navbar() {
               <button
                 onClick={() => toggleDropdown("mobile-solutions")}
                 className="flex items-center justify-between w-full text-[#0c0a09] dark:text-gray-200 py-2 cursor-pointer">
-                <span className="text-lg font-medium">Solutions</span>
+                <span className="text-base sm:text-lg font-medium">
+                  Solutions
+                </span>
                 <ChevronDown
-                  className={`h-5 w-5 transition-transform ${
+                  className={`h-4 w-4 sm:h-5 sm:w-5 transition-transform ${
                     activeDropdown === "mobile-solutions" ? "rotate-180" : ""
                   }`}
                 />
               </button>
               {activeDropdown === "mobile-solutions" && (
-                <div className="mt-4 space-y-6">
+                <div className="mt-3 sm:mt-4 space-y-4 sm:space-y-6">
                   <div>
                     <h3 className="uppercase text-xs font-semibold text-[#5B21B6] dark:text-[#5B21B6] mb-3">
                       USE CASES
                     </h3>
-                    <ul className="space-y-3 pl-2">
+                    <ul className="space-y-2 sm:space-y-3 pl-2">
                       <li>
                         <Link
                           href="#"
-                          className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
+                          className="text-sm sm:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
                           Office Administrator
                         </Link>
                       </li>
                       <li>
                         <Link
                           href="#"
-                          className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
+                          className="text-sm sm:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
                           Front-Desk Receptionist
                         </Link>
                       </li>
                       <li>
                         <Link
                           href="#"
-                          className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
+                          className="text-sm sm:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
                           Sales Representative
                         </Link>
                       </li>
                       <li>
                         <Link
                           href="#"
-                          className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
+                          className="text-sm sm:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
                           Customer Support Agent
                         </Link>
                       </li>
                       <li>
                         <Link
                           href="#"
-                          className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
+                          className="text-sm sm:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
                           Social Media Manager
                         </Link>
                       </li>
                       <li>
                         <Link
                           href="#"
-                          className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
+                          className="text-sm sm:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors cursor-pointer">
                           Operations Analyst
                         </Link>
                       </li>
@@ -599,49 +664,49 @@ export default function Navbar() {
                   </div>
 
                   <div>
-                    <h3 className="uppercase text-xs font-semibold text-[var(--main-color)] dark:text-[var(--main-color)] mb-3">
+                    <h3 className="uppercase text-xs font-semibold text-[#5B21B6] dark:text-[#5B21B6] mb-3">
                       INDUSTRIES
                     </h3>
-                    <ul className="space-y-3 pl-2">
+                    <ul className="space-y-2 sm:space-y-3 pl-2">
                       <li>
                         <Link
                           href="#"
-                          className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
+                          className="text-sm sm:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
                           Retail
                         </Link>
                       </li>
                       <li>
                         <Link
                           href="#"
-                          className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
+                          className="text-sm sm:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
                           Travel
                         </Link>
                       </li>
                       <li>
                         <Link
                           href="#"
-                          className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
+                          className="text-sm sm:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
                           Legal
                         </Link>
                       </li>
                       <li>
                         <Link
                           href="#"
-                          className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
+                          className="text-sm sm:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
                           Healthcare
                         </Link>
                       </li>
                       <li>
                         <Link
                           href="#"
-                          className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
+                          className="text-sm sm:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
                           Real Estate
                         </Link>
                       </li>
                       <li>
                         <Link
                           href="#"
-                          className="text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
+                          className="text-sm sm:text-base text-[#0c0a09] dark:text-gray-200 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors">
                           Financial Services
                         </Link>
                       </li>
@@ -654,7 +719,7 @@ export default function Navbar() {
             <div className="border-b border-gray-100 dark:border-gray-800 pb-4">
               <Link
                 href="#"
-                className="block text-lg font-medium text-[#0c0a09] dark:text-gray-200 py-2 cursor-pointer"
+                className="block text-base sm:text-lg font-medium text-[#0c0a09] dark:text-gray-200 py-2 cursor-pointer"
                 onClick={closeMobileMenu}>
                 How It Works
               </Link>
@@ -664,9 +729,11 @@ export default function Navbar() {
               <button
                 onClick={() => toggleDropdown("mobile-resources")}
                 className="flex items-center justify-between w-full text-[#0c0a09] dark:text-gray-200 py-2">
-                <span className="text-lg font-medium">Resources</span>
+                <span className="text-base sm:text-lg font-medium">
+                  Resources
+                </span>
                 <ChevronDown
-                  className={`h-5 w-5 transition-transform ${
+                  className={`h-4 w-4 sm:h-5 sm:w-5 transition-transform ${
                     activeDropdown === "mobile-resources" ? "rotate-180" : ""
                   }`}
                 />
@@ -675,19 +742,19 @@ export default function Navbar() {
                 <div className="mt-2 pl-4 space-y-2">
                   <Link
                     href="#"
-                    className="block py-2 text-[#0c0a09]/80 dark:text-gray-300"
+                    className="block py-2 text-sm sm:text-base text-[#0c0a09]/80 dark:text-gray-300"
                     onClick={closeMobileMenu}>
                     Blog
                   </Link>
                   <Link
                     href="#"
-                    className="block py-2 text-[#0c0a09]/80 dark:text-gray-300"
+                    className="block py-2 text-sm sm:text-base text-[#0c0a09]/80 dark:text-gray-300"
                     onClick={closeMobileMenu}>
                     Case Studies
                   </Link>
                   <Link
                     href="#"
-                    className="block py-2 text-[#0c0a09]/80 dark:text-gray-300"
+                    className="block py-2 text-sm sm:text-base text-[#0c0a09]/80 dark:text-gray-300"
                     onClick={closeMobileMenu}>
                     Documentation
                   </Link>
@@ -697,7 +764,7 @@ export default function Navbar() {
 
             <div className="pt-4">
               <Button
-                className="bg-[#5b21b6] hover:bg-[#4c1d95] dark:bg-purple-700 dark:hover:bg-purple-800 text-white rounded-full px-6 w-full py-6"
+                className="bg-[#5b21b6] hover:bg-[#4c1d95] dark:bg-purple-700 dark:hover:bg-purple-800 text-white rounded-full px-4 sm:px-6 w-full py-4 sm:py-6 text-sm sm:text-base"
                 onClick={closeMobileMenu}>
                 Start for Free
               </Button>
