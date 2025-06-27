@@ -1,124 +1,88 @@
 "use client";
 
 import { LayoutContainer } from "@/components/layout-container";
-import Image from "next/image";
 
 export function HowItWorksSection() {
   return (
-    <section className="py-20 bg-[#5b21b6] relative overflow-hidden">
-      <LayoutContainer className="relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white">
-          <span className="text-gray-900 dark:text-white">How It Works</span>
-        </h2>
-
-        {/* Steps Container */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Step 1 */}
-          <div className="flex flex-col items-center text-center">
-            <div className="w-20 h-20 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center mb-6 shadow-lg">
-              <span className="text-2xl font-bold text-[#5b21b6] dark:text-purple-400">
-                1
-              </span>
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-3">
-              Upload Your Data
-            </h3>
-            <p className="text-gray-500 dark:text-purple-100 text-base sm:text-lg text-left">
-              Share your business details, customer preferences, and service
-              offerings with our secure AI system.
-            </p>
-          </div>
-
-          {/* Step 2 */}
-          <div className="flex flex-col items-center text-center">
-            <div className="w-20 h-20 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center mb-6 shadow-lg">
-              <span className="text-2xl font-bold text-[#5b21b6] dark:text-purple-400">
-                2
-              </span>
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-3">
-              AI Learns Your Style
-            </h3>
-            <p className="text-gray-500 dark:text-purple-100 text-base sm:text-lg text-left">
-              Our advanced AI analyzes your communication patterns and business
-              approach to match your unique voice.
-            </p>
-          </div>
-
-          {/* Step 3 */}
-          <div className="flex flex-col items-center text-center">
-            <div className="w-20 h-20 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center mb-6 shadow-lg">
-              <span className="text-2xl font-bold text-[#5b21b6] dark:text-purple-400">
-                3
-              </span>
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-3">
-              Connect Your Tools
-            </h3>
-            <p className="text-gray-500 dark:text-purple-100 text-base sm:text-lg text-left">
-              Seamlessly integrate with your existing CRM, email, and business
-              management systems.
-            </p>
-          </div>
-
-          {/* Step 4 */}
-          <div className="flex flex-col items-center text-center">
-            <div className="w-20 h-20 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center mb-6 shadow-lg">
-              <span className="text-2xl font-bold text-[#5b21b6] dark:text-purple-400">
-                4
-              </span>
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-3">
-              Start Automating
-            </h3>
-            <p className="text-gray-500 dark:text-purple-100 text-base sm:text-lg text-left">
-              Watch as AdminDo handles calls, emails, and administrative tasks
-              while you focus on growing your business.
-            </p>
+    <section className="pt-12 w-full max-w-7xl mx-auto md:pt-20 pb-12 md:pb-20">
+      <LayoutContainer className="py-6 lg:px-5">
+        <div className="flex justify-center mb-12 sm:mb-16">
+          <div className="flex items-center gap-2 text-sm font-medium">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#7c3aed]"></div>
+            <span className="text-gray-900 dark:text-white">How It Works</span>
           </div>
         </div>
-
-        {/* Visual mockup */}
-        <div className="mt-16 flex justify-center">
-          <div className="relative">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 max-w-2xl">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-[#5b21b6] dark:bg-purple-600 rounded-full flex items-center justify-center">
-                  <Image
-                    src="/person.png"
-                    alt="AI Assistant"
-                    width={24}
-                    height={24}
-                  />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-900 dark:text-gray-100">
-                    AdminDo Assistant
-                  </h4>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    Online now
-                  </p>
-                </div>
-              </div>
-              <div className="space-y-4">
-                <div className="bg-gray-100 dark:bg-gray-700 rounded-lg p-3">
-                  <p className="text-gray-900 dark:text-gray-100 text-sm">
-                    "Hello! I've prepared your weekly report and scheduled 3
-                    follow-up calls for tomorrow."
-                  </p>
-                </div>
-                <div className="bg-[#5b21b6] dark:bg-purple-600 rounded-lg p-3 ml-8">
-                  <p className="text-white text-sm">
-                    "Perfect! Can you also send quotes to the new leads?"
-                  </p>
-                </div>
-                <div className="bg-gray-100 dark:bg-gray-700 rounded-lg p-3">
-                  <p className="text-gray-900 dark:text-gray-100 text-sm">
-                    "Already done! I've sent personalized quotes to all 5 leads
-                    and will follow up in 48 hours."
-                  </p>
-                </div>
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-20 gap-x-8">
+          {/* Step 1 */}
+          <div className="flex flex-col md:flex-row items-center md:items-start md:col-span-2">
+            <div className="order-2 md:order-1 w-full md:w-1/2 flex flex-col justify-center md:pr-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#7c3aed] mb-2 text-left">
+                Sign Up & Customize
+              </h2>
+              <p className="text-gray-500 text-base sm:text-lg text-left">
+                Complete a brief onboarding form, select your industry, team
+                size, and preferred channels to tailor the dashboard to your
+                needs.
+              </p>
+            </div>
+            <div className="order-1 md:order-2 w-full md:w-1/2 flex justify-end md:justify-center items-center mb-4 md:mb-0">
+              <span className="text-[120px] sm:text-[160px] md:text-[220px] font-bold bg-gradient-to-b from-[#ede9fe] via-[#a78bfa] to-[#7c3aed] bg-clip-text text-transparent leading-none">
+                01
+              </span>
+            </div>
+          </div>
+          {/* Step 2 */}
+          <div className="flex flex-col md:flex-row items-center md:items-start md:col-span-2">
+            <div className="w-full md:w-1/2 flex justify-start md:justify-center items-center mb-4 md:mb-0">
+              <span className="text-[120px] sm:text-[160px] md:text-[220px] font-bold bg-gradient-to-b from-[#ede9fe] via-[#a78bfa] to-[#7c3aed] bg-clip-text text-transparent leading-none">
+                02
+              </span>
+            </div>
+            <div className="w-full md:w-1/2 flex flex-col justify-center md:pl-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#7c3aed] mb-2 text-left">
+                Connect Your Channels
+              </h2>
+              <p className="text-gray-500 text-base sm:text-lg text-left">
+                Easily link your phone system, choose a male or female AI for
+                calls, and connect email and social media to sync communications
+                in real time.
+              </p>
+            </div>
+          </div>
+          {/* Step 3 */}
+          <div className="flex flex-col md:flex-row items-center md:items-start md:col-span-2">
+            <div className="order-2 md:order-1 w-full md:w-1/2 flex flex-col justify-center md:pr-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#7c3aed] mb-2 text-left">
+                Centralized Dashboard
+              </h2>
+              <p className="text-gray-500 text-base sm:text-lg text-left">
+                View all interactions: calls, and soon emails, social media and
+                support tasks—in one intuitive hub. Actionable stats and alerts
+                ensure you never miss a follow-up.
+              </p>
+            </div>
+            <div className="order-1 md:order-2 w-full md:w-1/2 flex justify-end md:justify-center items-center mb-4 md:mb-0">
+              <span className="text-[120px] sm:text-[160px] md:text-[220px] font-bold bg-gradient-to-b from-[#ede9fe] via-[#a78bfa] to-[#7c3aed] bg-clip-text text-transparent leading-none">
+                03
+              </span>
+            </div>
+          </div>
+          {/* Step 4 */}
+          <div className="flex flex-col md:flex-row items-center md:items-start md:col-span-2">
+            <div className="w-full md:w-1/2 flex justify-start md:justify-center items-center mb-4 md:mb-0">
+              <span className="text-[120px] sm:text-[160px] md:text-[220px] font-bold bg-gradient-to-b from-[#ede9fe] via-[#a78bfa] to-[#7c3aed] bg-clip-text text-transparent leading-none">
+                04
+              </span>
+            </div>
+            <div className="w-full md:w-1/2 flex flex-col justify-center md:pl-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#7c3aed] mb-2 text-left">
+                Act & Optimize
+              </h2>
+              <p className="text-gray-500 text-base sm:text-lg text-left">
+                Use AI-driven recommendations to prioritize tasks, improve
+                customer satisfaction, to refine communication and grow your
+                business.
+              </p>
             </div>
           </div>
         </div>
