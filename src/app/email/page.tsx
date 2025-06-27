@@ -124,7 +124,7 @@ export default function EmailPage() {
         <LayoutContainer className="relative max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Steps */}
-            <div className="space-y-2 -mt-24">
+            <div className="space-y-2 -mt-6 md:-mt-24">
               <h2 className="text-3xl pb-12 font-bold text-white">
                 See How It Works
               </h2>
