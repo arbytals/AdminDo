@@ -1,10 +1,29 @@
 "use client";
 
 import { LayoutContainer } from "@/components/layout-container";
+import { GetStartedSection } from "@/components/sections/GetStartedSection";
 import Image from "next/image";
 import Link from "next/link";
+import { SocialWhySection } from "@/components/sections/SocialWhySection";
+import { SocialHowItWorksSection } from "@/components/sections/SocialHowItWorksSection";
+import { FAQSection } from "@/components/sections/FAQSection";
 
 export default function SocialMediaPage() {
+  const faqItems = [
+    {
+      question: "Can I use AdminDo for my business?",
+      answer: "Yes, AdminDo is designed to work for businesses of all sizes.",
+    },
+    {
+      question: "Is it secure?",
+      answer: "Yes, AdminDo is designed to work for businesses of all sizes.",
+    },
+    {
+      question: "Is it easy to use?",
+      answer: "Yes, AdminDo is designed to work for businesses of all sizes.",
+    },
+  ];
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#e4d6fa] via-purple-50 to-white dark:from-purple-950 dark:via-purple-900/50 dark:to-gray-900">
       {/* Hero Section */}
@@ -53,6 +72,30 @@ export default function SocialMediaPage() {
           </div>
         </LayoutContainer>
       </section>
+
+      {/* Why AdminDo Section */}
+      <SocialWhySection />
+
+      {/* How It Works & Client Results Section */}
+      <SocialHowItWorksSection />
+
+      <FAQSection items={faqItems} />
+
+      <GetStartedSection
+        title="Ready to Take Social Off Your Plate?"
+        buttons={[
+          {
+            text: "Start My 14-Day Free Trial",
+            href: "/signup",
+            variant: "primary",
+          },
+          {
+            text: "Book a Call with a Human",
+            href: "/contact",
+            variant: "secondary",
+          },
+        ]}
+      />
     </main>
   );
 }

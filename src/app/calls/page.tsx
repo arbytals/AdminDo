@@ -3,8 +3,31 @@
 import { LayoutContainer } from "@/components/layout-container";
 import Image from "next/image";
 import Link from "next/link";
+import { ExperienceSection } from "@/components/sections/ExperienceSection";
+import { FAQSection } from "@/components/sections/FAQSection";
+import { GetStartedSection } from "@/components/sections/GetStartedSection";
 
 export default function CallsPage() {
+  const faqItems = [
+    {
+      question: "Does the AI sound robotic?",
+      answer: "Our customers say callers can't tell it isn't human.",
+    },
+    {
+      question: "Can I keep my existing number?",
+      answer: "Absolutely, we will port it in or forward it.",
+    },
+    {
+      question: "What happens after hours?",
+      answer: "Exactly the same thing that happens at 2 pm: we answer.",
+    },
+    {
+      question: "Is my data safe?",
+      answer:
+        "Yes. We encrypt everything in transit and at rest, and comply with Australian Privacy Principles.",
+    },
+  ];
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#e4d6fa] via-purple-50 to-white dark:from-purple-950 dark:via-purple-900/50 dark:to-gray-900">
       {/* Hero Section */}
@@ -204,7 +227,7 @@ export default function CallsPage() {
 
         {/* Why Choose Our AI Call Management Section */}
         <section className="py-20 lg:py-32 bg-gradient-to-b from-white via-purple-50/50 to-white dark:from-gray-900 dark:via-purple-900/20 dark:to-gray-900">
-          <LayoutContainer>
+          <LayoutContainer className="relative max-w-7xl">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold text-[#5b21b6] dark:text-purple-400">
                 Why Choose Our AI Call Management?
@@ -328,6 +351,35 @@ export default function CallsPage() {
             </div>
           </LayoutContainer>
         </section>
+
+        {/* Experience AdminDo Section */}
+        <ExperienceSection
+          title="Experience AdminDo in Real Conversations"
+          description="Listen to real-life call samples handled by AdminDo's AI assistants, natural, efficient, and tailored for your business"
+          cards={[
+            {
+              title: "Front Desk Receptionist",
+              subtitle: "Healthcare, Appointment Booking",
+              onClick: () => {},
+            },
+            {
+              title: "Sales Representative",
+              subtitle: "Retail Product Enquiry",
+              onClick: () => {},
+            },
+            {
+              title: "Office Administrator",
+              subtitle: "Legal, Insurance Claim Report",
+              onClick: () => {},
+            },
+          ]}
+        />
+
+        {/* FAQ Section */}
+        <FAQSection items={faqItems} />
+
+        {/* Get Started Section */}
+        <GetStartedSection />
       </div>
     </main>
   );

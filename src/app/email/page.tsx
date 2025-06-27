@@ -3,8 +3,33 @@
 import { LayoutContainer } from "@/components/layout-container";
 import Image from "next/image";
 import Link from "next/link";
+import { TryItSection } from "@/components/sections/TryItSection";
+import { ClientResultsSection } from "@/components/sections/ClientResultsSection";
+import { AutomatePaperworkSection } from "@/components/sections/AutomatePaperworkSection";
+import { FAQSection } from "@/components/sections/FAQSection";
 
 export default function EmailPage() {
+  const faqItems = [
+    {
+      question: "How does it work?",
+      answer:
+        "It's simple! You send an email to our AI, and it builds a quote for you.",
+    },
+    {
+      question: "Does it work with Xero, MYOB, QuickBooks & Reckon?",
+      answer: "Yes, it works with Xero, MYOB, QuickBooks & Reckon",
+    },
+    {
+      question: "Is it secure?",
+      answer:
+        "Yes, it's secure. We use the latest encryption technology to protect your data.",
+    },
+    {
+      question: "Is it easy to use?",
+      answer: "Yes, it's easy to use. You can start using it in minutes.",
+    },
+  ];
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#e4d6fa] via-purple-50 to-white dark:from-purple-950 dark:via-purple-900/50 dark:to-gray-900">
       {/* Hero Section */}
@@ -93,6 +118,88 @@ export default function EmailPage() {
           </div>
         </LayoutContainer>
       </section>
+
+      {/* How It Works Section */}
+      <section className="relative py-20 lg:py-32 bg-[#5b21b6]">
+        <LayoutContainer className="relative max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left side - Steps */}
+            <div className="space-y-2 -mt-24">
+              <h2 className="text-3xl pb-12 font-bold text-white">
+                See How It Works
+              </h2>
+
+              {/* Step 1 */}
+              <div className="flex items-start gap-4">
+                <div className="w-3 h-3 rounded-full bg-yellow-300 mt-2 flex-shrink-0"></div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-1">
+                    <span className="text-white">Step 1:</span> Email received ,
+                    AI detects "Request for Quote".
+                  </h3>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="flex items-start gap-4">
+                <div className="w-3 h-3 rounded-full bg-yellow-300 mt-2 flex-shrink-0"></div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-1">
+                    <span className="text-white">Step 2:</span> Quote built &
+                    sent in minute
+                  </h3>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="flex items-start gap-4">
+                <div className="w-3 h-3 rounded-full bg-yellow-300 mt-2 flex-shrink-0"></div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-1">
+                    <span className="text-white">Step 3:</span> Client approves
+                    invoice auto-generated.
+                  </h3>
+                </div>
+              </div>
+
+              {/* Step 4 */}
+              <div className="flex items-start gap-4">
+                <div className="w-3 h-3 rounded-full bg-yellow-300 mt-2 flex-shrink-0"></div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-1">
+                    <span className="text-white">Step 4:</span> Payment tracked,
+                    dashboard updated.
+                  </h3>
+                </div>
+              </div>
+            </div>
+
+            {/* Right side - Visual Workflow */}
+            <div className="bg-transparent rounded-3xl p-8">
+              <div className="space-y-8">
+                <Image
+                  src="/email-works.png"
+                  alt="Email Workflow"
+                  width={500}
+                  height={500}
+                  className="mx-auto"
+                />
+              </div>
+            </div>
+          </div>
+        </LayoutContainer>
+      </section>
+
+      {/* Try It Yourself Section */}
+      <TryItSection />
+
+      {/* Client Results Section */}
+      <ClientResultsSection />
+
+      <FAQSection items={faqItems} />
+
+      {/* Automate Paperwork CTA Section */}
+      <AutomatePaperworkSection />
     </main>
   );
 }

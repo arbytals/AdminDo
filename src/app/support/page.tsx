@@ -1,10 +1,34 @@
 "use client";
 
 import { LayoutContainer } from "@/components/layout-container";
+import { ExperienceSection } from "@/components/sections/ExperienceSection";
+import { FAQSection } from "@/components/sections/FAQSection";
+import { GetStartedSection } from "@/components/sections/GetStartedSection";
+import { SupportBenefitsSection } from "@/components/sections/SupportBenefitsSection";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function SupportPage() {
+  const faqItems = [
+    {
+      question: "Does the AI sound robotic?",
+      answer: "Our customers say callers can't tell it isn't human.",
+    },
+    {
+      question: "Can I keep my existing number?",
+      answer: "Absolutely, we will port it in or forward it.",
+    },
+    {
+      question: "What happens after hours?",
+      answer: "Exactly the same thing that happens at 2 pm: we answer.",
+    },
+    {
+      question: "Is my data safe?",
+      answer:
+        "Yes. We encrypt everything in transit and at rest, and comply with Australian Privacy Principles.",
+    },
+  ];
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#e4d6fa] via-purple-50 to-white dark:from-purple-950 dark:via-purple-900/50 dark:to-gray-900">
       {/* Hero Section */}
@@ -57,6 +81,38 @@ export default function SupportPage() {
           </div>
         </LayoutContainer>
       </section>
+
+      {/* Support Benefits Section */}
+      <SupportBenefitsSection />
+
+      {/* Experience Section */}
+      <ExperienceSection
+        title="Experience Our Support Excellence"
+        description="Listen to real support interactions showcasing how our AI assistants handle various scenarios with expertise and care"
+        cards={[
+          {
+            title: "Technical Support",
+            subtitle: "System Integration & Troubleshooting",
+            onClick: () => {},
+          },
+          {
+            title: "Customer Service",
+            subtitle: "Issue Resolution & Follow-up",
+            onClick: () => {},
+          },
+          {
+            title: "Product Specialist",
+            subtitle: "Feature Guidance & Best Practices",
+            onClick: () => {},
+          },
+        ]}
+      />
+
+      {/* FAQ Section */}
+      <FAQSection items={faqItems} />
+
+      {/* Get Started Section */}
+      <GetStartedSection />
     </main>
   );
 }

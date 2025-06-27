@@ -44,103 +44,81 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Contact Information */}
               <div className="lg:col-span-1 space-y-6">
-                <Card className="overflow-hidden border-none shadow-lg dark:bg-gray-800">
+                <Card className="overflow-hidden border-none bg-[#5b21b6] shadow-lg dark:bg-gray-800">
                   <div className="h-24 bg-gradient-to-r from-violet-500 to-purple-600"></div>
                   <CardContent className="p-6 -mt-10">
                     <div className="w-20 h-20 rounded-full bg-white dark:bg-gray-800 shadow-md flex items-center justify-center mb-6 mx-auto">
                       <Mail className="h-8 w-8 text-violet-600 dark:text-purple-400" />
                     </div>
 
-                    <h2 className="text-2xl font-semibold text-center mb-6 dark:text-white">
+                    <h2 className="text-2xl text-white font-semibold text-center mb-6 dark:text-white">
                       Contact Information
                     </h2>
 
                     <div className="space-y-4">
-                      <div className="flex items-start space-x-4">
-                        <div className="w-10 h-10 rounded-full bg-violet-100 dark:bg-purple-900/30 flex items-center justify-center flex-shrink-0">
-                          <MapPin className="h-5 w-5 text-violet-600 dark:text-purple-400" />
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                            Our Location
-                          </h3>
-                          <p className="text-gray-700 dark:text-gray-300">
-                            123 Business Avenue, Suite 500
-                            <br />
-                            San Francisco, CA 94107
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start space-x-4">
+                      <div className="flex items-start text-white space-x-4">
                         <div className="w-10 h-10 rounded-full bg-violet-100 dark:bg-purple-900/30 flex items-center justify-center flex-shrink-0">
                           <Phone className="h-5 w-5 text-violet-600 dark:text-purple-400" />
                         </div>
                         <div>
-                          <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                          <h3 className="text-sm font-medium text-white dark:text-gray-400">
                             Phone Number
                           </h3>
-                          <p className="text-gray-700 dark:text-gray-300">
-                            +1 (555) 123-4567
-                          </p>
-                          <p className="text-gray-700 dark:text-gray-300">
-                            +1 (555) 987-6543
+                          <p className="text-white dark:text-gray-300">
+                            +61 (4) 522-04174
                           </p>
                         </div>
                       </div>
 
-                      <div className="flex items-start space-x-4">
+                      <div className="flex items-start text-white space-x-4">
                         <div className="w-10 h-10 rounded-full bg-violet-100 dark:bg-purple-900/30 flex items-center justify-center flex-shrink-0">
                           <Mail className="h-5 w-5 text-violet-600 dark:text-purple-400" />
                         </div>
                         <div>
-                          <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                          <h3 className="text-sm font-medium text-white dark:text-gray-400">
                             Email Address
                           </h3>
-                          <p className="text-gray-700 dark:text-gray-300">
-                            contact@yourcompany.com
-                          </p>
-                          <p className="text-gray-700 dark:text-gray-300">
-                            support@yourcompany.com
+                          <p className="text-white dark:text-gray-300">
+                            info@admindo.ai
                           </p>
                         </div>
                       </div>
                     </div>
 
-                    <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-                      <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">
+                    <div className="mt-8 pt-6 border-t text-white border-gray-200 dark:border-gray-700">
+                      <h3 className="text-sm font-medium text-white dark:text-gray-400 mb-4">
                         Connect With Us
                       </h3>
-                      <div className="flex items-center space-x-4">
+                      <div className="flex items-center text-white space-x-4">
                         <Link
-                          href="https://facebook.com/arbytals"
+                          href="https://facebook.com/admindo"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-gray-600 dark:text-gray-400 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors"
+                          className="text-white dark:text-gray-400 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors"
                           aria-label="Facebook">
                           <Facebook className="h-5 w-5" />
                         </Link>
                         <Link
-                          href="https://instagram.com/arbytals"
+                          href="https://instagram.com/admindo"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-gray-600 dark:text-gray-400 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors"
+                          className="text-white dark:text-gray-400 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors"
                           aria-label="Instagram">
                           <Instagram className="h-5 w-5" />
                         </Link>
                         <Link
-                          href="https://linkedin.com/company/arbytals"
+                          href="https://linkedin.com/in/admindo"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-gray-600 dark:text-gray-400 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors"
+                          className="text-white dark:text-gray-400 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors"
                           aria-label="LinkedIn">
                           <Linkedin className="h-5 w-5" />
                         </Link>
                         <Link
-                          href="https://twitter.com/arbytals"
+                          href="https://twitter.com/admindo"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-gray-600 dark:text-gray-400 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors"
+                          className="text-white dark:text-gray-400 hover:text-[#5b21b6] dark:hover:text-purple-400 transition-colors"
                           aria-label="Twitter">
                           <Twitter className="h-5 w-5" />
                         </Link>
@@ -154,10 +132,7 @@ export default function ContactPage() {
               <div className="lg:col-span-2">
                 <Card className="border-none shadow-lg dark:bg-gray-800">
                   <CardContent className="p-8">
-                    <h2 className="text-2xl font-semibold mb-6 dark:text-white">
-                      Send Us a Message
-                    </h2>
-                    <ContactForm />
+                                       <ContactForm />
                   </CardContent>
                 </Card>
 
