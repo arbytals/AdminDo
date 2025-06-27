@@ -161,7 +161,7 @@ export function Settings() {
                 <span>Call Settings</span>
               </CardTitle>
               <CardDescription className="dark:text-gray-300">
-                Configure default call behavior and preferences
+                Configure default call behaviour and preferences
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -308,7 +308,7 @@ export function Settings() {
                 <div className="flex flex-wrap gap-2">
                   <Badge variant="outline">call_started</Badge>
                   <Badge variant="outline">call_ended</Badge>
-                  <Badge variant="outline">call_analyzed</Badge>
+                  <Badge variant="outline">call_analysed</Badge>
                   <Badge variant="outline">appointment_booked</Badge>
                 </div>
               </div>

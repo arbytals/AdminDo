@@ -136,7 +136,7 @@ export default function Navbar() {
                               Email to Invoice Automation
                             </h3>
                             <p className="text-xs xl:text-sm text-gray-600 dark:text-gray-300 mt-1">
-                              Turn incoming emails into organized quotes,
+                              Turn incoming emails into organised quotes,
                               invoices, and tracked payments, automatically.
                             </p>
                           </div>
@@ -156,7 +156,7 @@ export default function Navbar() {
                               Ongoing Support & Maintenance
                             </h3>
                             <p className="text-xs xl:text-sm text-gray-600 dark:text-gray-300 mt-1">
-                              We continuously monitor, update, and optimize your
+                              We continuously monitor, update, and optimise your
                               AI assistant for peak performance.
                             </p>
                           </div>
@@ -528,7 +528,7 @@ export default function Navbar() {
                           Email to Invoice Automation
                         </h3>
                         <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">
-                          Turn incoming emails into organized quotes, invoices,
+                          Turn incoming emails into organised quotes, invoices,
                           and tracked payments, automatically.
                         </p>
                       </div>
@@ -568,7 +568,7 @@ export default function Navbar() {
                           Ongoing Support & Maintenance
                         </h3>
                         <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">
-                          We continuously monitor, update, and optimize your AI
+                          We continuously monitor, update, and optimise your AI
                           assistant for peak performance.
                         </p>
                       </div>

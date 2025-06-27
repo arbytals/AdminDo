@@ -22,7 +22,7 @@ const lato = Lato({
 export const metadata: Metadata = {
   title: "The Best Voice Automation Platform for Modern Businesses | AdminDo",
   description:
-    "AdminDo is designed specifically to help unlock the potential of your business to its fullest, AdminDo the premier SaaS for AI voice automation. Automate routine tasks, deliver exceptional customer service, and optimize operations with intuitive voice commands.",
+    "AdminDo is designed specifically to help unlock the potential of your business to its fullest, AdminDo the premier SaaS for AI voice automation. Automate routine tasks, deliver exceptional customer service, and optimise operations with intuitive voice commands.",
 };
 
 export default function RootLayout({

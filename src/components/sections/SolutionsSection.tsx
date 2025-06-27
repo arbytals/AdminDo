@@ -111,7 +111,7 @@ export function SolutionsSection() {
                 Email Sorting & Response
               </h2>
               <p className="text-[#57534d] dark:text-gray-300">
-                Filter, summarize, and respond to emails automatically, with
+                Filter, summarise, and respond to emails automatically, with
                 suggested replies and follow-up reminders.
               </p>
             </motion.div>

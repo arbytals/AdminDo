@@ -89,11 +89,18 @@ export function ExploreProductsSection() {
                   our AI assistants by choosing either a friendly male or female
                   voice.
                 </p>
-                <Link
-                  href="#"
-                  className="inline-block bg-[#5b21b6] hover:bg-[#4c1d95] dark:bg-purple-700 dark:hover:bg-purple-800 text-white font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
-                  Get started
-                </Link>
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    href="/calls"
+                    className="inline-block border-2 border-[#5b21b6] dark:border-purple-700 text-[#5b21b6] dark:text-purple-300 hover:bg-[#5b21b6] hover:text-white dark:hover:bg-purple-700 dark:hover:text-white font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
+                    Learn more
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="inline-block bg-[#5b21b6] hover:bg-[#4c1d95] dark:bg-purple-700 dark:hover:bg-purple-800 text-white font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
+                    Get started
+                  </Link>
+                </div>
               </div>
             </motion.div>
 
@@ -118,19 +125,26 @@ export function ExploreProductsSection() {
                   <div className="p-4 sm:p-6 flex flex-col flex-grow">
                     <div className="mb-auto">
                       <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-900 dark:text-white">
-                        Email Handling & Organization
+                        Email Handling & Organisation
                       </h3>
                       <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
-                        Transform your chaotic inbox into a well-organized
+                        Transform your chaotic inbox into a well-organised
                         workspace with AI-powered sorting and smart filtering.
                       </p>
                     </div>
                     <div className="pt-4 sm:pt-6">
-                      <Link
-                        href="#"
-                        className="inline-block bg-[#7c3aed] hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700 text-white font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
-                        Get started
-                      </Link>
+                      <div className="flex flex-wrap gap-3">
+                        <Link
+                          href="/email"
+                          className="inline-block border-2 border-[#7c3aed] dark:border-purple-600 text-[#7c3aed] dark:text-purple-300 hover:bg-[#7c3aed] hover:text-white dark:hover:bg-purple-600 dark:hover:text-white font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
+                          Learn more
+                        </Link>
+                        <Link
+                          href="/contact"
+                          className="inline-block bg-[#7c3aed] hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700 text-white font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
+                          Get started
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -159,11 +173,18 @@ export function ExploreProductsSection() {
                       </p>
                     </div>
                     <div className="pt-4 sm:pt-6">
-                      <Link
-                        href="#"
-                        className="inline-block bg-[#7c3aed] hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700 text-white font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
-                        Get started
-                      </Link>
+                      <div className="flex flex-wrap gap-3">
+                        <Link
+                          href="/social-media"
+                          className="inline-block border-2 border-[#7c3aed] dark:border-purple-600 text-[#7c3aed] dark:text-purple-300 hover:bg-[#7c3aed] hover:text-white dark:hover:bg-purple-600 dark:hover:text-white font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
+                          Learn more
+                        </Link>
+                        <Link
+                          href="/contact"
+                          className="inline-block bg-[#7c3aed] hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700 text-white font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
+                          Get started
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -174,7 +195,7 @@ export function ExploreProductsSection() {
                   className="bg-white dark:bg-gray-800/50 rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col h-[420px] shadow-md border border-gray-100 dark:border-gray-700">
                   <div className="relative w-full h-[180px] sm:h-[220px]">
                     <Image
-                      src="/support.png"
+                      src="/support.jpg"
                       alt="Support maintenance illustration"
                       fill
                       className="object-cover rounded-t-2xl sm:rounded-t-3xl"
@@ -192,11 +213,18 @@ export function ExploreProductsSection() {
                       </p>
                     </div>
                     <div className="pt-4 sm:pt-6">
-                      <Link
-                        href="#"
-                        className="inline-block bg-[#7c3aed] hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700 text-white font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
-                        Get started
-                      </Link>
+                      <div className="flex flex-wrap gap-3">
+                        <Link
+                          href="/support"
+                          className="inline-block border-2 border-[#7c3aed] dark:border-purple-600 text-[#7c3aed] dark:text-purple-300 hover:bg-[#7c3aed] hover:text-white dark:hover:bg-purple-600 dark:hover:text-white font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
+                          Learn more
+                        </Link>
+                        <Link
+                          href="/contact"
+                          className="inline-block bg-[#7c3aed] hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700 text-white font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
+                          Get started
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -209,17 +237,17 @@ export function ExploreProductsSection() {
                 <div className="flex flex-col justify-center">
                   <div className="flex items-center justify-start gap-2 mb-3 sm:mb-4">
                     <h2 className="text-xl sm:text-2xl font-bold text-white">
-                      Customize
+                      Customise
                     </h2>
                     <span className="ml-1 text-yellow-300">✨</span>
                   </div>
                   <p className="text-white/90 mb-4 sm:mb-6 text-sm sm:text-base">
-                    Your Business. Your AI. Customize AI assistants that
+                    Your Business. Your AI. Customise AI assistants that
                     perfectly match your brand personality and customer needs.
                   </p>
-                  <div>
+                  <div className="flex flex-wrap gap-3">
                     <Link
-                      href="#"
+                      href="/contact"
                       className="inline-block bg-white text-[#7c3aed] border border-[#7c3aed] hover:bg-[#ede9fe] hover:text-[#5b21b6] font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
                       Get started
                     </Link>

@@ -23,14 +23,11 @@ export function HeroSection() {
                   />
                 </div>
                 <div className="flex flex-wrap justify-center items-center gap-2">
-                  <span className="text-[#0c0a09] dark:text-gray-200 text-lg sm:text-xl">
-                    Join
+                  <span className="text-[#78716C] dark:text-gray-200 text-lg sm:text-xl">
+                    Join the list of
                   </span>
-                  <span className="text-[#5b21b6] dark:text-purple-400 font-semibold text-lg sm:text-xl">
-                    5000+
-                  </span>
-                  <span className="text-[#0c0a09] dark:text-gray-200 text-lg sm:text-xl">
-                    exciting customers
+                  <span className="text-[#78716C] dark:text-gray-200 text-lg sm:text-xl">
+                    excited customers
                   </span>
                 </div>
               </div>
@@ -45,10 +42,10 @@ export function HeroSection() {
               </h1>
 
               {/* Subheading */}
-              <p className="text-lg sm:text-xl md:text-2xl text-[#44403c] dark:text-gray-300 mb-8 sm:mb-12 w-full max-w-4xl mx-auto leading-relaxed">
-                Effortlessly manage calls, emails, and social media from one
-                intuitive platform, empowering you with insights that transform
-                every client interaction
+              <p className="text-lg sm:text-xl md:text-2xl text-[#78716C] dark:text-gray-300 mb-8 sm:mb-12 w-full max-w-4xl mx-auto leading-relaxed">
+                AdminDo, an intuitive platform that handles all incoming
+                customer calls, enquiry, bookings, follow up calls and social
+                media effortlessly.
               </p>
 
               {/* CTA Button */}

@@ -6,18 +6,21 @@ export function HowItWorksSection() {
   return (
     <section className="pt-12 w-full max-w-7xl mx-auto md:pt-20 pb-12 md:pb-20">
       <LayoutContainer className="py-6 lg:px-5">
-        <div className="flex justify-center mb-12 sm:mb-16">
+        <div className="flex flex-col items-center self-center text-center justify-center mb-12 sm:mb-16">
           <div className="flex items-center gap-2 text-sm font-medium">
             <div className="w-1.5 h-1.5 rounded-full bg-[#7c3aed]"></div>
             <span className="text-gray-900 dark:text-white">How It Works</span>
           </div>
+          <h2 className="text-2xl text-center sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            Simple steps to smarter, AI powered communication
+          </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-20 gap-x-8">
           {/* Step 1 */}
           <div className="flex flex-col md:flex-row items-center md:items-start md:col-span-2">
             <div className="order-2 md:order-1 w-full md:w-1/2 flex flex-col justify-center md:pr-8">
               <h2 className="text-2xl sm:text-3xl font-bold text-[#7c3aed] mb-2 text-left">
-                Sign Up & Customize
+                Sign Up & Customise
               </h2>
               <p className="text-gray-500 text-base sm:text-lg text-left">
                 Complete a brief onboarding form, select your industry, team
@@ -76,10 +79,10 @@ export function HowItWorksSection() {
             </div>
             <div className="w-full md:w-1/2 flex flex-col justify-center md:pl-8">
               <h2 className="text-2xl sm:text-3xl font-bold text-[#7c3aed] mb-2 text-left">
-                Act & Optimize
+                Act & Optimise
               </h2>
               <p className="text-gray-500 text-base sm:text-lg text-left">
-                Use AI-driven recommendations to prioritize tasks, improve
+                Use AI-driven recommendations to prioritise tasks, improve
                 customer satisfaction, to refine communication and grow your
                 business.
               </p>
