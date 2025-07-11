@@ -1,5 +1,6 @@
 import { LayoutContainer } from "@/components/layout-container";
 import Image from "next/image";
+import Link from "next/link";
 
 interface SupportBenefitsSectionProps {
   className?: string;
@@ -71,9 +72,11 @@ export function SupportBenefitsSection({
 
             {/* CTA Button */}
             <div className="pt-4">
-              <button className="bg-[#5b21b6] dark:bg-purple-600 hover:bg-[#4c1d96] dark:hover:bg-purple-700 text-white font-medium px-8 py-3 rounded-lg text-base transition-colors shadow-lg dark:shadow-purple-500/20">
+              <Link
+                href="https://tally.so/r/w70YZP"
+                className="inline-block bg-[#5b21b6] dark:bg-purple-600 hover:bg-[#4c1d96] dark:hover:bg-purple-700 text-white font-medium px-8 py-3 rounded-lg text-base transition-colors shadow-lg dark:shadow-purple-500/20">
                 Get Started
-              </button>
+              </Link>
             </div>
           </div>
         </div>

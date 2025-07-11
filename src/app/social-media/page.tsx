@@ -54,7 +54,7 @@ export default function SocialMediaPage() {
               X, Threads, so you can focus on your clients.
             </p>
             <Link
-              href="/contact"
+              href="https://tally.so/r/w70YZP"
               className="inline-block bg-[#5b21b6] dark:bg-purple-600 text-white font-medium px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg hover:bg-[#4c1d96] dark:hover:bg-purple-700 transition-colors shadow-lg dark:shadow-purple-500/20">
               Book a Free Demo
             </Link>
@@ -86,7 +86,7 @@ export default function SocialMediaPage() {
         buttons={[
           {
             text: "Start My 14-Day Free Trial",
-            href: "/signup",
+            href: "https://tally.so/r/w70YZP",
             variant: "primary",
           },
           {

@@ -14,7 +14,7 @@ export function AutomatePaperworkSection() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link
-            href="/signup"
+            href="https://tally.so/r/w70YZP"
             className="bg-white dark:bg-gray-100 text-[#5b21b6] dark:text-purple-700 hover:bg-gray-100 dark:hover:bg-gray-200 font-medium px-8 py-3 rounded-full text-base transition-colors shadow-lg">
             Get Started
           </Link>

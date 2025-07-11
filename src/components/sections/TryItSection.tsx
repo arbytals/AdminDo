@@ -22,7 +22,7 @@ export function TryItSection() {
             </p>
             <div className="flex md:justify-start justify-center">
               <Link
-                href="/signup"
+                href="https://tally.so/r/w70YZP"
                 className="bg-[#5b21b6] dark:bg-purple-600 hover:bg-[#4c1d96] dark:hover:bg-purple-700 text-white font-medium px-8 py-3 rounded-full text-base transition-colors shadow-lg dark:shadow-purple-500/20">
                 Start My Free Trial
               </Link>

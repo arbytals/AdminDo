@@ -96,7 +96,7 @@ export function ExploreProductsSection() {
                     Learn more
                   </Link>
                   <Link
-                    href="/contact"
+                    href="https://tally.so/r/w70YZP"
                     className="inline-block bg-[#5b21b6] hover:bg-[#4c1d95] dark:bg-purple-700 dark:hover:bg-purple-800 text-white font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
                     Get started
                   </Link>
@@ -140,7 +140,7 @@ export function ExploreProductsSection() {
                           Learn more
                         </Link>
                         <Link
-                          href="/contact"
+                          href="https://tally.so/r/w70YZP"
                           className="inline-block bg-[#7c3aed] hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700 text-white font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
                           Get started
                         </Link>
@@ -180,7 +180,7 @@ export function ExploreProductsSection() {
                           Learn more
                         </Link>
                         <Link
-                          href="/contact"
+                          href="https://tally.so/r/w70YZP"
                           className="inline-block bg-[#7c3aed] hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700 text-white font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
                           Get started
                         </Link>
@@ -220,7 +220,7 @@ export function ExploreProductsSection() {
                           Learn more
                         </Link>
                         <Link
-                          href="/contact"
+                          href="https://tally.so/r/w70YZP"
                           className="inline-block bg-[#7c3aed] hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700 text-white font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
                           Get started
                         </Link>
@@ -247,7 +247,7 @@ export function ExploreProductsSection() {
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <Link
-                      href="/contact"
+                      href="https://tally.so/r/w70YZP"
                       className="inline-block bg-white text-[#7c3aed] border border-[#7c3aed] hover:bg-[#ede9fe] hover:text-[#5b21b6] font-medium py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base">
                       Get started
                     </Link>

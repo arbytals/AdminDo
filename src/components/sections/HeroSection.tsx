@@ -50,7 +50,7 @@ export function HeroSection() {
 
               {/* CTA Button */}
               <Link
-                href="/signup"
+                href="https://tally.so/r/w70YZP"
                 className="inline-block bg-[#5b21b6] dark:bg-purple-600 text-white font-medium px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg hover:bg-[#4c1d96] dark:hover:bg-purple-700 transition-colors shadow-lg dark:shadow-purple-500/20">
                 Get started for free
               </Link>

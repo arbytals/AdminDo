@@ -61,7 +61,7 @@ export default function CallsPage() {
                 </p>
               </div>
               <Link
-                href="/contact"
+                href="https://tally.so/r/w70YZP"
                 className="inline-block bg-[#5b21b6] dark:bg-purple-600 text-white font-medium px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg hover:bg-[#4c1d96] dark:hover:bg-purple-700 transition-colors shadow-lg dark:shadow-purple-500/20">
                 Get Started Today
               </Link>
@@ -219,7 +219,7 @@ export default function CallsPage() {
         {/* Centered CTA Button */}
         <div className="text-center pb-20">
           <Link
-            href="/contact"
+            href="https://tally.so/r/w70YZP"
             className="inline-block bg-[#5b21b6] dark:bg-purple-600 text-white font-medium px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg hover:bg-[#4c1d96] dark:hover:bg-purple-700 transition-colors shadow-lg dark:shadow-purple-500/20">
             Get Started
           </Link>
